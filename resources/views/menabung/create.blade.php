@@ -1,0 +1,18 @@
+<x-app-layout>
+    <x-slot name="header"><p class="text-sm font-bold uppercase tracking-[0.2em] text-emerald-600">Konsisten Menabung</p><h2 class="mt-1 text-2xl font-extrabold text-slate-800">Tambah Setoran</h2></x-slot>
+    <div class="py-10"><div class="mx-auto max-w-xl px-5 sm:px-6"><div class="rounded-3xl border border-slate-100 bg-white p-6 shadow-xl shadow-slate-200/50 sm:p-8">
+        @if($tabungan->isEmpty())<div class="rounded-xl bg-amber-50 p-4 text-amber-700">Semua tabungan sudah tercapai atau belum ada tabungan. <a class="font-bold underline" href="{{ route('tabungan.create') }}">Buat tabungan baru</a>.</div>@else
+        <form method="POST" action="{{ route('menabung.store') }}" class="space-y-5">@csrf
+            <div><x-input-label for="tabungan_id" value="Tujuan tabungan" /><select id="tabungan_id" name="tabungan_id" class="mt-1 block w-full rounded-md border-gray-300" required>@foreach($tabungan as $item)<option value="{{ $item->id }}" @selected(old('tabungan_id', request('tabungan_id')) == $item->id)>{{ $item->judul }} (Rp {{ number_format($item->target_nominal, 0, ',', '.') }})</option>@endforeach</select><x-input-error :messages="$errors->get('tabungan_id')" class="mt-2" /></div>
+            <div><x-input-label for="nominal_display" value="Nominal setoran (Rp)" /><input id="nominal_display" type="text" inputmode="numeric" class="mt-1 block w-full rounded-xl border-slate-200 bg-slate-50 focus:border-[#7ED957] focus:ring-[#7ED957]" value="{{ old('nominal') ? number_format((float) old('nominal'), 0, ',', '.') : '' }}" required><input id="nominal" name="nominal" type="hidden" value="{{ old('nominal') }}"><x-input-error :messages="$errors->get('nominal')" class="mt-2" /></div>
+            <div><x-input-label for="tanggal" value="Tanggal menabung" /><x-text-input id="tanggal" name="tanggal" type="date" max="{{ now()->toDateString() }}" class="mt-1 block w-full" value="{{ old('tanggal', now()->toDateString()) }}" required /><x-input-error :messages="$errors->get('tanggal')" class="mt-2" /></div>
+            <fieldset><legend class="text-sm font-medium text-gray-700">Metode pembayaran</legend><div class="mt-2 grid gap-3 sm:grid-cols-2"><label class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-4 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-50"><input type="radio" name="payment_method" value="manual" @checked(old('payment_method', 'manual') === 'manual')><span><strong class="block text-sm">Catat langsung</strong><small class="text-xs text-slate-500">Setoran tunai atau transfer manual</small></span></label><label class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-4 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-50"><input type="radio" name="payment_method" value="qris" @checked(old('payment_method') === 'qris')><span><strong class="block text-sm">Bayar dengan QRIS</strong><small class="text-xs text-slate-500">Bank atau e-wallet melalui Midtrans</small></span></label></div><x-input-error :messages="$errors->get('payment_method')" class="mt-2" /></fieldset>
+            <div class="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end"><a href="{{ route('home') }}" class="rounded-xl px-4 py-2 text-center text-gray-600">Batal</a><button class="rounded-xl bg-emerald-600 px-5 py-2 font-semibold text-white">Simpan Setoran</button></div>
+        </form>@endif
+    </div></div></div>
+</x-app-layout>
+<script>
+document.querySelectorAll('#nominal_display').forEach((display) => display.addEventListener('input', (event) => {
+    const raw = event.target.value.replace(/\D/g, ''); event.target.value = raw.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); document.getElementById('nominal').value = raw;
+}));
+</script>

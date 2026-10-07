@@ -1,0 +1,4 @@
+<x-app-layout>
+    <x-slot name="header"><p class="sa-eyebrow">Info terbaru</p><h1 class="mt-1 font-display text-2xl font-extrabold text-[#183b2a] dark:text-white">Notifikasi</h1></x-slot>
+    <div class="mx-auto max-w-3xl space-y-3 px-4 py-8 sm:px-6 lg:px-8">@forelse($notifications as $notification)<a href="{{ route('notifications.read', $notification->id) }}" class="sa-card block p-4 {{ $notification->read_at ? '' : '!border-[#d4e8d5] !bg-[#f1f8f0] dark:!border-[#36533c] dark:!bg-[#1e3523]' }}"><p class="font-bold text-[#183b2a] dark:text-white">{{ $notification->data['title'] ?? 'Notifikasi' }}</p><p class="mt-1 text-sm text-slate-600 dark:text-slate-300">{{ $notification->data['message'] ?? '' }}</p><p class="mt-2 text-xs text-slate-400">{{ $notification->created_at->diffForHumans() }}</p></a>@empty<div class="sa-card p-8 text-center text-slate-500 dark:text-slate-400">Belum ada notifikasi.</div>@endforelse{{ $notifications->links() }}</div>
+</x-app-layout>

@@ -1,0 +1,311 @@
+:root {
+    color-scheme: light;
+    font-family: "DM Sans", sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    --sa-green: #34794a;
+    --sa-green-dark: #245f38;
+    --sa-ink: #183b2a;
+    --sa-muted: #738076;
+    --sa-border: #e7ece4;
+    --sa-paper: #f6f8f4;
+}
+
+html.dark {
+    color-scheme: dark;
+    --sa-green: #34794a;
+    --sa-green-dark: #28633b;
+    --sa-ink: #e8f0e8;
+    --sa-muted: #b6c4b8;
+    --sa-border: #344b39;
+    --sa-paper: #101812;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-width: 320px;
+    overflow-x: hidden;
+    background: var(--sa-paper);
+}
+
+button,
+a,
+input,
+select,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a,
+button {
+    touch-action: manipulation;
+}
+
+:focus-visible {
+    outline: 3px solid #78a982;
+    outline-offset: 3px;
+}
+
+::selection {
+    color: #183b2a;
+    background: #dcebdc;
+}
+
+.font-display {
+    font-family: "Manrope", sans-serif;
+}
+
+.sa-card {
+    border: 1px solid var(--sa-border);
+    border-radius: 1.25rem;
+    background: #fff;
+    box-shadow: 0 8px 28px rgb(25 55 33 / 4%);
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.sa-card:hover {
+    border-color: #d2e1d2;
+    box-shadow: 0 16px 38px rgb(25 55 33 / 8%);
+}
+
+.sa-primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    border-radius: .85rem;
+    background: var(--sa-green);
+    padding: .8rem 1.1rem;
+    color: #fff;
+    font-size: .9rem;
+    font-weight: 700;
+    transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.sa-primary-button:hover {
+    transform: translateY(-1px);
+    background: var(--sa-green-dark);
+    box-shadow: 0 8px 18px rgb(52 121 74 / 18%);
+}
+
+.sa-secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    border: 1px solid #dce8dc;
+    border-radius: .85rem;
+    background: #fff;
+    padding: .8rem 1.1rem;
+    color: #315f3a;
+    font-size: .9rem;
+    font-weight: 700;
+    transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.sa-secondary-button:hover {
+    border-color: #a9c9ad;
+    background: #f4f8f3;
+}
+
+.sa-eyebrow {
+    color: #34794a;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+.auth-content .text-emerald-600 {
+    color: #047857;
+}
+
+.sa-progress {
+    overflow: hidden;
+    border-radius: 999px;
+    background: #edf1ec;
+}
+
+.sa-progress > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #438b55, #81b98a);
+    animation: sa-progress-in 850ms cubic-bezier(.2, .7, .25, 1) both;
+}
+
+.sa-enter {
+    animation: sa-enter 650ms cubic-bezier(.2, .7, .25, 1) both;
+}
+
+@keyframes sa-enter {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sa-progress-in {
+    from { width: 0; }
+}
+
+html.dark .sa-card {
+    border-color: #293b2e;
+    background: #18231b;
+    box-shadow: 0 8px 28px rgb(0 0 0 / 10%);
+}
+
+html.dark .sa-card:hover {
+    border-color: #3a5841;
+}
+
+html.dark .sa-secondary-button {
+    border-color: #344b39;
+    background: #18231b;
+    color: #c2dec4;
+}
+
+html.dark .sa-secondary-button:hover {
+    background: #202d23;
+}
+
+html.dark .sa-progress {
+    background: #29362c;
+}
+
+html.dark .sa-eyebrow {
+    color: #a9d2ad;
+}
+
+html.dark .text-emerald-600,
+html.dark .text-emerald-700,
+html.dark .text-green-600,
+html.dark [class~="text-[#34794a]"],
+html.dark [class~="text-[#438b55]"] {
+    color: #a9d2ad;
+}
+
+html.dark body {
+    background: #101812;
+    color: #e8f0e8;
+}
+
+html.dark .welcome-shell {
+    background: #101812;
+}
+
+html.dark .welcome-header {
+    border-color: #25362a;
+    background-color: rgb(21 31 24 / 94%);
+}
+
+html.dark .welcome-header a:not(.sa-primary-button) {
+    color: #c7d5c8;
+}
+
+html.dark .welcome-header a:hover {
+    background-color: #202d23;
+}
+
+html.dark .welcome-section,
+html.dark .welcome-footer {
+    border-color: #25362a;
+    background: #151f18;
+}
+
+html.dark .welcome-feature {
+    border-color: #293b2e;
+    background: #18231b;
+}
+
+html.dark .welcome-cta {
+    background: #1d3022;
+}
+
+html.dark .welcome-page .sa-card {
+    border-color: #293b2e;
+    background: #18231b;
+}
+
+html.dark .auth-page {
+    background: #101812;
+    color: #e8f0e8;
+}
+
+html.dark .auth-card {
+    border-color: #293b2e;
+    background: #18231b;
+}
+
+html.dark .auth-content {
+    color: #e8f0e8;
+}
+
+html.dark .auth-content h1,
+html.dark .auth-content h2,
+html.dark .auth-content label {
+    color: #e8f0e8;
+}
+
+html.dark .auth-content p,
+html.dark .auth-content .text-slate-500,
+html.dark .auth-content .text-slate-600 {
+    color: #b6c4b8;
+}
+
+html.dark .auth-content .text-gray-600,
+html.dark .auth-content .text-gray-900 {
+    color: #c7d5c8;
+}
+
+html.dark .auth-content .text-emerald-600,
+html.dark .auth-content .text-emerald-700,
+html.dark .auth-content .text-emerald-900 {
+    color: #a9d2ad;
+}
+
+html.dark .auth-content .bg-emerald-50 {
+    background-color: #24372a;
+}
+
+html.dark .auth-content button.absolute:hover {
+    background-color: #24372a;
+}
+
+html.dark .auth-content input:not([type="checkbox"]),
+html.dark .auth-content select,
+html.dark .auth-content textarea {
+    border-color: #405343;
+    background-color: #101812;
+    color: #e8f0e8;
+}
+
+html.dark .auth-content input::placeholder,
+html.dark .auth-content textarea::placeholder {
+    color: #a0b0a2;
+}
+
+@media (max-width: 640px) {
+    input,
+    select,
+    textarea {
+        max-width: 100%;
+    }
+
+    .sa-primary-button,
+    .sa-secondary-button {
+        min-height: 2.75rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
